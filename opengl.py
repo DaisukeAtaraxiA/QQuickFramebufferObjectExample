@@ -1,3 +1,4 @@
+from OpenGL.GL import *
 from PySide2.QtCore import QUrl, qDebug, QObject
 from PySide2.QtGui import QGuiApplication, QOpenGLFramebufferObjectFormat, QOpenGLFramebufferObject
 from PySide2.QtQml import qmlRegisterType
@@ -28,10 +29,12 @@ class FBORenderItem(QQuickFramebufferObject):
     def __init__(self, parent=None):
         qDebug("Create fborenderitem")
         super(FBORenderItem, self).__init__(parent)
+        self._renderer = None
 
     def createRenderer(self):
         qDebug("Create renderer")
-        return FbItemRenderer()
+        self._renderer = FbItemRenderer()
+        return self._renderer
 
 
 if __name__ == '__main__':
